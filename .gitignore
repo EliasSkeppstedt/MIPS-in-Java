@@ -1,4 +1,7 @@
 .vscode/
 lib/
 bin/
-mc.txt
+# The machine code I use for all the instructions.
+# It is for a lab at university and therefor I will not share everything. 
+# Look at sample code for example.
+machinecode.txt

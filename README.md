@@ -10,3 +10,13 @@ State is important for many of the components and therefor be extended by all co
 
 ## UML diagram of MIPS
 ![Under construction](images/MIPS-UML.png)
+
+# Usage
+The txt file containing the machine code should have this structure: 
+1. Program count for 0x00000000
+2. Instruction 0xabcxyzij for 0x00000000
+3. Blank line
+4. Program count for 0x00000004
+5. Instruction 0xabcxyzij for 0x00000004
+6. Blank line
+7. Etc.
