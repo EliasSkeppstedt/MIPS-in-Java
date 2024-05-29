@@ -7,8 +7,8 @@ public class Adder {
     private int cIn, overflow;
     private FullAdder fullAdder;
 
-    public Adder(FullAdder fullAdder) {
-        this.fullAdder = fullAdder;
+    public Adder(FullAdder fullAdder2) {
+        this.fullAdder = fullAdder2;
     }
 
     public void setSrcA(int[] srcA) {
@@ -16,6 +16,8 @@ public class Adder {
             for (int i = 0; i < 32; i++) {
                 this.srcA[i] = srcA[i];
             }
+        } else { 
+            System.out.println("Error: srcA is not 32 bits.");
         }
     }
 
@@ -24,6 +26,8 @@ public class Adder {
             for (int i = 0; i < 32; i++) {
                 this.srcB[i] = srcB[i];
             }
+        } else { 
+            System.out.println("Error: srcB is not 32 bits.");
         }
     }
 
@@ -34,6 +38,10 @@ public class Adder {
     public int[] getResult() {
         calcResult();
         return result;
+    }
+
+    public int getOverflow() {
+        return overflow;
     }
 
     private void calcResult() {

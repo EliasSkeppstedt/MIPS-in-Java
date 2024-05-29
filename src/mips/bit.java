@@ -1,4 +1,4 @@
-package basicsupport;
+package mips;
 
 public enum bit {
     one(1), zero(0);
