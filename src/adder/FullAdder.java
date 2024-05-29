@@ -19,14 +19,23 @@ public class FullAdder {
     }
 
     private void performCalculation() {
-        int AxorB, AandB;
-        AxorB = xor(a, b);
-        r     = xor(AxorB, cIn);
-        AandB = a     == 1 && b   == 1 ? 1 : 0;
-        cOut  = AandB == 1 || cIn == 1 ? 1 : 0;
+        int AxorB, AandB, CINandAxorB;
+        AxorB       = xor(a, b);
+        r           = xor(AxorB, cIn);
+        CINandAxorB = and(cIn, AxorB);
+        AandB       = and(a, b);
+        cOut        = or (CINandAxorB, AandB);
     }
 
     private int xor(int var1, int var2) {
         return (var1 == 1 && var2 == 0) || (var1 == 0 && var2 == 1) ? 1 : 0;
+    }
+
+    private int and(int var1, int var2) {
+        return var1 == 1 && var2 == 1 ? 1 : 0;
+    }
+
+    private int or(int var1, int var2) {
+        return var1 == 1 || var2 == 1 ? 1 : 0;
     }
 }

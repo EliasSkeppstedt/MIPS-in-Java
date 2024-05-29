@@ -1,6 +1,7 @@
 package mips;
 
 import adder.Adder;
+import adder.FullAdder;
 import basicsupport.ProgramMemory;
 
 public class tb {
@@ -8,20 +9,28 @@ public class tb {
     static Adder adder;
 
     public static void main(String[] args) {
+        testOfAdder();
     }
 
-    public String testOfAdder() {
-        adder = new Adder();
+    static public void testOfAdder() {
+        System.out.println("-------------------- Test of Adder");
+        adder = new Adder(new FullAdder());
         adder.setOp(0);
         int[] srcA = {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0};
         int[] srcB = {1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0};
+      //int[] srcB = {0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0};
         adder.setSrcA(srcA);
         adder.setSrcB(srcB);
-        return adder.getResult().toString();
+        int[] result = adder.getResult();
+        for (int i = 0; i < 32; i++) {
+            System.out.print(result[i]);
+        }
+        System.out.println("\n-------------------- End of test");
     }
 
-    public String testOfProgramMemory() {
+    static public void testOfProgramMemory() {
+        System.out.println("-------------------- Test of ProgramMemory");
         programMemory = new ProgramMemory("src/basicsupport/machinecode.txt");
-        return "Test not finished";
+        System.out.println("-------------------- End of test");
     }
 }

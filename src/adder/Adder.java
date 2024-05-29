@@ -7,6 +7,10 @@ public class Adder {
     private int cIn, overflow;
     private FullAdder fullAdder;
 
+    public Adder(FullAdder fullAdder) {
+        this.fullAdder = fullAdder;
+    }
+
     public void setSrcA(int[] srcA) {
         if (is32Bits(srcA)) {
             for (int i = 0; i < 32; i++) {
@@ -29,20 +33,19 @@ public class Adder {
 
     public int[] getResult() {
         calcResult();
-        for (int j = 0; j < 32; j++) {
-            System.out.print(result[j]);
-        }
-        System.out.println();
         return result;
     }
 
     private void calcResult() {
         int lastCarryOver;
-        for (int i = 0; i < 31; i++) {
-            fullAdder.prepareFullAdder(srcA[i], srcB[i], cIn);
+        int carryOver = cIn;
+
+        for (int i = 31; i >= 0; i--) {
+            fullAdder.prepareFullAdder(srcA[i], srcB[i], carryOver);
             result[i] = fullAdder.getResult();
-            cIn       = fullAdder.getCarryOut() ? 1 : 0;
+            carryOver = fullAdder.getCarryOut();
         }
+        
         lastCarryOver = cIn;
         fullAdder.prepareFullAdder(srcA[31], srcB[31], cIn);
         result[31] = fullAdder.getResult();
@@ -58,7 +61,7 @@ public class Adder {
     private void checkOverflow(int a, int b, int carryOver) {
         fullAdder.prepareFullAdder(a, b, carryOver);
         int carryOut;
-        carryOut = fullAdder.getCarryOut() == true ? 1 : 0;
+        carryOut = fullAdder.getCarryOut();
         overflow = carryOver == carryOut ? 0 : 1;
     }
 }
