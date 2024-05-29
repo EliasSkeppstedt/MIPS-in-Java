@@ -1,13 +1,12 @@
 package adder;
 
 public class FullAdder {
-    private boolean a, b, cIn, cOut;
-    private int     r;
+    private int a, b, cIn, cOut, r;
 
     protected void prepareFullAdder(int a, int b, int cIn) {
-        this.a   = trueOrFalse(a);
-        this.b   = trueOrFalse(b);
-        this.cIn = trueOrFalse(cIn);
+        this.a   = a;
+        this.b   = b;
+        this.cIn = cIn;
         performCalculation();
     }
 
@@ -15,24 +14,19 @@ public class FullAdder {
         return r;
     }
 
-    protected boolean getCarryOut() {
+    protected int getCarryOut() {
         return cOut;
     }
 
-    private boolean trueOrFalse(int var) {
-        return var == 1 ? true : false;
-    }
-
     private void performCalculation() {
-        boolean AxorB, AandB;
-        AxorB = xor(a, b) ? true : false;
-        AandB = a && b    ? true : false;
-
-        r    = xor(AxorB, cIn) ? 1 : 0;
-        cOut = AandB || cIn;
+        int AxorB, AandB;
+        AxorB = xor(a, b);
+        r     = xor(AxorB, cIn);
+        AandB = a     == 1 && b   == 1 ? 1 : 0;
+        cOut  = AandB == 1 || cIn == 1 ? 1 : 0;
     }
 
-    private boolean xor(boolean var1, boolean var2) {
-        return (var1 && !var2) || (!var1 && var2);
+    private int xor(int var1, int var2) {
+        return (var1 == 1 && var2 == 0) || (var1 == 0 && var2 == 1) ? 1 : 0;
     }
 }
