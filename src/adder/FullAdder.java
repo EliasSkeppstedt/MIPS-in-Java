@@ -25,20 +25,11 @@ public class FullAdder {
 
     private void performCalculation() {
         boolean AxorB, AandB;
-        if (xor(a, b)) {
-            AxorB = true;
-        } else {
-            AxorB = false;
-        }
+        AxorB = xor(a, b) ? true : false;
+        AandB = a && b    ? true : false;
 
-        if (a && b) {
-            AandB = true;
-        } else {
-            AandB = false;
-        }
-
-        r    = (xor(AxorB, cIn)) ? 1 : 0;
-        cOut = (AandB || cIn);
+        r    = xor(AxorB, cIn) ? 1 : 0;
+        cOut = AandB || cIn;
     }
 
     private boolean xor(boolean var1, boolean var2) {

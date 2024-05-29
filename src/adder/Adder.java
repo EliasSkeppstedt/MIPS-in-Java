@@ -29,7 +29,6 @@ public class Adder {
 
     public int[] getResult() {
         calcResult();
-        System.out.println("Overflow: " + overflow);
         for (int j = 0; j < 32; j++) {
             System.out.print(result[j]);
         }
