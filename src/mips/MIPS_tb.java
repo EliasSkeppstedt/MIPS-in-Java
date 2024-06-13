@@ -3,6 +3,7 @@ package mips;
 import adder.Adder;
 import adder.FullAdder;
 import basicsupport.AdderPCPlus4;
+import basicsupport.InstructionHub;
 import basicsupport.ProgramMemory;
 
 public class MIPS_tb {
@@ -56,7 +57,7 @@ public class MIPS_tb {
 
     static public void testOfProgramMemory() {
         System.out.println("-------------------- Test of ProgramMemory");
-        programMemory = new ProgramMemory("src/mips/machinecode.txt");
+        programMemory = new ProgramMemory(new InstructionHub(), "src/mips/machinecode.txt");
         System.out.println("-------------------- End of test");
     }
 

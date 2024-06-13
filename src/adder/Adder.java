@@ -12,22 +12,18 @@ public class Adder {
     }
 
     public void setSrcA(int[] srcA) {
-        if (is32Bits(srcA)) {
+        if (is32Bits(srcA, "srcA")) {
             for (int i = 0; i < 32; i++) {
                 this.srcA[i] = srcA[i];
             }
-        } else { 
-            System.out.println("Error: srcA is not 32 bits.");
         }
     }
 
     public void setSrcB(int[] srcB) {
-        if (is32Bits(srcB)) {
+        if (is32Bits(srcB, "srcB")) {
             for (int i = 0; i < 32; i++) {
                 this.srcB[i] = srcB[i];
             }
-        } else { 
-            System.out.println("Error: srcB is not 32 bits.");
         }
     }
 
@@ -62,8 +58,12 @@ public class Adder {
 
     }
 
-    private boolean is32Bits(int[] var) {
-        return var.length == 32 ? true : false;
+    private boolean is32Bits(int[] src, String srcName) {
+        if (src.length != 32) {
+            System.out.println("Error: " + srcName + " is not 32 bits.");
+            return false;
+        }
+        return true;
     }
     
     private void checkOverflow(int a, int b, int carryOver) {

@@ -2,21 +2,33 @@ package basicsupport;
 
 public class ProgramCounter {
     private int[] pc = new int[32];
-    private int   clk;
+    private int counter = 0;
+    private int clockCycle = 0;
+    private AdderPCPlus4 adderPCPlus4;	
 
-    public ProgramCounter(int clk) {
-        this.clk = clk;
+    public ProgramCounter(AdderPCPlus4 adderPCPlus4) {
+        this.adderPCPlus4 = adderPCPlus4;
     }
 
-    public boolean runClock(int clk, int reset) {
-        if (reset == 1) {
-            for (int i = 0; i < 32; i++) {
-                pc[i] = 0;
-            }
-        } else if (this.clk == 0 && clk == 1) {
-            return true;
+    public void updateCounter() {
+        counter++;
+        if (counter % 2 == 0) {
+            clockCycle++;
         }
-        return false;
+    }
+
+    public void resetClk() {
+        for (int i = 0; i < 32; i++) {
+            pc[i] = 0;
+        }
+    }
+
+    public boolean risingEdge() {
+        return counter % 2 != 0 ? true : false;
+    }
+
+    public int getClockCycle() {
+        return clockCycle;
     }
     
 }

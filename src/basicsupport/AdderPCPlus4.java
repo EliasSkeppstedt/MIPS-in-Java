@@ -4,8 +4,8 @@ import adder.Adder;
 import adder.FullAdder;
 
 public class AdderPCPlus4 extends Adder {
-    private int[] srcAPCPlus4 = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0};
-
+    private int[] srcAPCPlus4 = BaseConverter.decToBin(4);
+    
     public AdderPCPlus4(FullAdder fullAdder, int[] srcB, int cIn) {
 
         super(fullAdder);

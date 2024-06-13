@@ -8,14 +8,17 @@ public class ProgramMemory {
     private int[][] address     = new int[9][32];
     private int[][] instruction = new int[9][32];
     private File    mc;
+    private InstructionHub instructionHub;
 
-    public ProgramMemory(String filePath) {
+    public ProgramMemory(InstructionHub instructionHub, String filePath) {
+        this.instructionHub = instructionHub;
 
         if (!checkFilePath(filePath)) {
-            System.out.println("File not found!");
+            System.out.println("File not found, NO machinecode loaded to program memory!");
+        } else { 
+            System.out.println("File found, loading machinecode to program memory...");
+            loadMachineCodInstructions(); 
         }
-
-        loadMachineCodInstructions();
     }
 
     private boolean checkFilePath(String filePath) {
@@ -45,7 +48,22 @@ public class ProgramMemory {
             }
             scanner.close();
         } catch (Exception e) {
+            System.out.println("ERROR! Could not load machinecode to program memory!");
             e.printStackTrace();
+        }
+        System.out.println("Machinecode successfully loaded to program memory!");
+
+        for (int i = 0; i < 9; i++) {
+            System.out.print("Address     " + i + " : ");
+            for (int j = 0; j < 32; j++) {
+                System.out.print(address[i][j]);
+            }
+            System.out.println();
+            System.out.print("Instruction " + i + " : ");
+            for (int j = 0; j < 32; j++) {
+                System.out.print(instruction[i][j]);
+            }
+            System.out.println();
         }
         /*
         for (int i = 0; i < 9; i++) {
@@ -63,8 +81,8 @@ public class ProgramMemory {
         */
     } 
 
-    public int[] getInstructionForPC(int pc) {
-        return instruction[pc];
+    public void fetchInstruction() {
+        // TODO: Update the instructionHub with the fetched instruction.
     }
 
 }

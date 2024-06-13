@@ -11,11 +11,11 @@ public class State {
     }
 
     public void setOperation(int[] opCode, int[] funct) {
-        int opCodeDec = binToDec(opCode);
-        int functDec = binToDec(funct);
+        int opCodeDec = BaseConverter.binToDec(opCode);
+        int functDec = BaseConverter.binToDec(funct);
 
         if (opCodeDec == 0) {
-            if        (functDec == 32) {
+            if (functDec == 32) {
                 state = Operation.ADD;
             } else if (functDec == 34) {
                 state = Operation.SUB;
@@ -25,6 +25,8 @@ public class State {
                 state = Operation.OR;
             } else if (functDec == 42) {
                 state = Operation.SLT;
+            } else {
+                state = Operation.NOP;
             }
         } else if (opCodeDec == 35) {
             state = Operation.LW;
@@ -38,14 +40,6 @@ public class State {
             state = Operation.NOP; 
         }
         setControlUnitSignals();
-    }
-
-    private int binToDec(int[] bin) {
-        int dec = 0;
-        for (int i = 4, pow = 0; i >= 0; i--, pow++) {
-            dec += bin[i] * Math.pow(2, pow);
-        }   
-        return dec;
     }
 
     public void setControlUnitSignals() {

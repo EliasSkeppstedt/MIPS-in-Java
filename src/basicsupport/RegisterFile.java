@@ -1,10 +1,19 @@
 package basicsupport;
 
-import java.util.ResourceBundle.Control;
-
 public class RegisterFile {
-    private int[] readRS = new int[5], readRT = new int[5], readRD = new int[5], readRTorRD = new int[5];
-    private int[] writeReg = new int[32];
+    private int[] 
+        sourceRegister       = new int[5], 
+        targetRegister       = new int[5], 
+        destinationRegister  = new int[5], 
+        targetOrDestRegister = new int[5];
+
+    private int[] 
+        writeReg   = new int[32], 
+        readData_1 = new int[32], 
+        readData_2 = new int[32];
+
+    private int[][] regFileMemory = new int[32][32];
+
     private ControlUnit controlUnit;
 
     public RegisterFile(ControlUnit controlUnit) {
@@ -13,23 +22,31 @@ public class RegisterFile {
 
     public void setRegisters(int[] instr) {
         if (!is32Bits(instr)) {
-            System.out.println("Error: instruction is not 32 bits.");
+            System.out.println("ERROR! Instruction is not 32 bits long.");
             return;
         }
-        chooseBitsXtoY(25, 5, instr, readRS);
-        chooseBitsXtoY(20, 5, instr, readRT);
-        chooseBitsXtoY(15, 5, instr, readRD);
-        readRTorRD = controlUnit.getRegDst() == 0 ? readRT : readRD;
+
+        setRegister(sourceRegister, 25, instr);
+        setRegister(targetRegister, 20, instr);
+        setRegister(destinationRegister, 15, instr);
+
+        targetOrDestRegister = controlUnit.getRegDst() == 0 ? targetRegister : destinationRegister;
     }
 
     private boolean is32Bits(int[] var) {
         return var.length == 32 ? true : false;
     }
 
-    private void chooseBitsXtoY(int toBit, int size, int[] instr, int[] address) {
-        for (int a = size--, i = toBit; a >= 0; a--, i--) {
-            address[a] = instr[i];
+    private void setRegister(int[] register, int fromBit, int[] instr) {
+        int length = 5;
+        // MSB of the register is at index 0, will count up to 4.
+        // Instruction starts at highest bit, which should go to index 0, and goes down 1 every iteration, to the lowest bit which should go to index 4.
+        for (int i = 0, j = fromBit; i < length; i++, j--) {
+            register[i] = instr[j];
         }
+    }
 
+    public void onRisingEdge() {
+        
     }
 }
