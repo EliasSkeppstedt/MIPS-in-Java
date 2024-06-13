@@ -7,21 +7,21 @@ import basicsupport.RegisterFile;
 public class RunMIPS {
 
     public void  main(String[] args) {
-        CreateMips createMips = new CreateMips();
+        MIPSFactory MIPSFactory = new MIPSFactory();
         RunMIPS runMIPS = new RunMIPS();
 
         runMIPS.runMIPS(
-            createMips.getNewMips(), 
-            createMips.getProgramCounter(),
-            createMips.getProgramMemory(),
-            createMips.getRegisterFile()
+            MIPSFactory.generateNewMips(), 
+            MIPSFactory.getProgramCounter(),
+            MIPSFactory.getProgramMemory(),
+            MIPSFactory.getRegisterFile()
         );
     }
     
 
     private void runMIPS(MIPS mips,ProgramCounter programCounter, ProgramMemory programMemory, RegisterFile registerFile) {
         while (programCounter.getClockCycle() < 32) {
-            programCounter.updateCounter();
+            programCounter.updateProgramCounter();
 
             if (programCounter.risingEdge()) {
                 programMemory.fetchInstruction();

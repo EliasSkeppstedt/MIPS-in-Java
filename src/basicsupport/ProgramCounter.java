@@ -1,7 +1,7 @@
 package basicsupport;
 
 public class ProgramCounter {
-    private int[] pc = new int[32];
+    private int[] programCounter = new int[32];
     private int counter = 0;
     private int clockCycle = 0;
     private AdderPCPlus4 adderPCPlus4;	
@@ -10,16 +10,19 @@ public class ProgramCounter {
         this.adderPCPlus4 = adderPCPlus4;
     }
 
-    public void updateCounter() {
+    public void updateProgramCounter() {
         counter++;
         if (counter % 2 == 0) {
             clockCycle++;
         }
+        adderPCPlus4.setSrcB(programCounter);
+        adderPCPlus4.setOp(0);
+        programCounter = adderPCPlus4.getResult();
     }
 
     public void resetClk() {
         for (int i = 0; i < 32; i++) {
-            pc[i] = 0;
+            programCounter[i] = 0;
         }
     }
 
@@ -30,5 +33,4 @@ public class ProgramCounter {
     public int getClockCycle() {
         return clockCycle;
     }
-    
 }

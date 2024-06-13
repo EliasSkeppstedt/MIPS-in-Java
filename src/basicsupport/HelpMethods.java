@@ -2,7 +2,7 @@ package basicsupport;
 
 
 
-public class BaseConverter {
+public class HelpMethods {
 
     static public int binToDec(int[] bin) {
         int dec = 0;
@@ -24,6 +24,16 @@ public class BaseConverter {
         }
 
         return bin;
+    }
+
+    static public int[] reverseArray(int[] arr) {
+        int[] reversedArray = new int[32];
+        
+        for (int i = 0, j = 31; i < 32; i++, j--) {
+            reversedArray[i] = arr[j];
+        }
+
+        return reversedArray;
     }
     
     private enum hex {

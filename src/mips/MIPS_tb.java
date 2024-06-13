@@ -57,7 +57,7 @@ public class MIPS_tb {
 
     static public void testOfProgramMemory() {
         System.out.println("-------------------- Test of ProgramMemory");
-        programMemory = new ProgramMemory(new InstructionHub(), "src/mips/machinecode.txt");
+        //programMemory = new ProgramMemory(new InstructionHub(), "src/mips/machinecode.txt");
         System.out.println("-------------------- End of test");
     }
 

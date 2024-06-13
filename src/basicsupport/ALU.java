@@ -6,8 +6,8 @@ public class ALU {
     private Adder adderALU;
     private int[] ALUControl = new int[3];
     private int[] srcA = new int[32], srcB = new int[32], result = new int[32];
-    private int[] AandB = new int[32], AorB = new int[32], adderResult = new int[32], zeroExtendResult = new int[32];
-    private int sub, op, zeroFlag;
+    private int[] adderResult = new int[32];
+    private int sub, zeroFlag;
 
     public ALU(Adder adderALU) {
         this.adderALU = adderALU;

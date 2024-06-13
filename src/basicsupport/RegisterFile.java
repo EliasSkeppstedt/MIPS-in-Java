@@ -20,15 +20,11 @@ public class RegisterFile {
         this.controlUnit = controlUnit;
     }
 
-    public void setRegisters(int[] instr) {
+    public void setInstruction(int[] instr) {
         if (!is32Bits(instr)) {
             System.out.println("ERROR! Instruction is not 32 bits long.");
             return;
         }
-
-        setRegister(sourceRegister, 25, instr);
-        setRegister(targetRegister, 20, instr);
-        setRegister(destinationRegister, 15, instr);
 
         targetOrDestRegister = controlUnit.getRegDst() == 0 ? targetRegister : destinationRegister;
     }
@@ -37,13 +33,10 @@ public class RegisterFile {
         return var.length == 32 ? true : false;
     }
 
-    private void setRegister(int[] register, int fromBit, int[] instr) {
-        int length = 5;
-        // MSB of the register is at index 0, will count up to 4.
-        // Instruction starts at highest bit, which should go to index 0, and goes down 1 every iteration, to the lowest bit which should go to index 4.
-        for (int i = 0, j = fromBit; i < length; i++, j--) {
-            register[i] = instr[j];
-        }
+    public void setRegisters(int[] sourceRegister, int[] targetRegister, int[] destinationRegister) {
+        this.sourceRegister = sourceRegister;
+        this.targetRegister = targetRegister;
+        this.destinationRegister = destinationRegister;
     }
 
     public void onRisingEdge() {

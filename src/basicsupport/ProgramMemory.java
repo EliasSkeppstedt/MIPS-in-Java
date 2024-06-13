@@ -3,7 +3,11 @@ package basicsupport;
 import java.io.File;
 import java.util.Scanner;
 
+import mips.ProgramMemoryHashMap;
+
 public class ProgramMemory {
+
+    private ProgramMemoryHashMap hashMap = new ProgramMemoryHashMap();
 
     private int[][] address     = new int[9][32];
     private int[][] instruction = new int[9][32];
@@ -53,6 +57,9 @@ public class ProgramMemory {
         }
         System.out.println("Machinecode successfully loaded to program memory!");
 
+        fetchInstruction();
+
+        // Print loaded machine code
         for (int i = 0; i < 9; i++) {
             System.out.print("Address     " + i + " : ");
             for (int j = 0; j < 32; j++) {
@@ -81,8 +88,14 @@ public class ProgramMemory {
         */
     } 
 
+    public void readNextInstruction() {
+
+    }
+
     public void fetchInstruction() {
-        // TODO: Update the instructionHub with the fetched instruction.
+        // TODO: 
+        // instructionHub.setInstruction(instruction);
+        instructionHub.sendInstructions();
     }
 
 }

@@ -11,8 +11,8 @@ public class State {
     }
 
     public void setOperation(int[] opCode, int[] funct) {
-        int opCodeDec = BaseConverter.binToDec(opCode);
-        int functDec = BaseConverter.binToDec(funct);
+        int opCodeDec = HelpMethods.binToDec(opCode);
+        int functDec = HelpMethods.binToDec(funct);
 
         if (opCodeDec == 0) {
             if (functDec == 32) {

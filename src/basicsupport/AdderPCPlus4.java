@@ -4,12 +4,12 @@ import adder.Adder;
 import adder.FullAdder;
 
 public class AdderPCPlus4 extends Adder {
-    private int[] srcAPCPlus4 = BaseConverter.decToBin(4);
+    private int[] srcA = HelpMethods.decToBin(4);
     
     public AdderPCPlus4(FullAdder fullAdder, int[] srcB, int cIn) {
 
         super(fullAdder);
-        super.setSrcA(srcAPCPlus4);
+        super.setSrcA(srcA);
         super.setSrcB(srcB);
         super.setOp(cIn);
     }
