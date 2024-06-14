@@ -21,16 +21,7 @@ public class RegisterFile {
     }
 
     public void setInstruction(int[] instr) {
-        if (!is32Bits(instr)) {
-            System.out.println("ERROR! Instruction is not 32 bits long.");
-            return;
-        }
-
         targetOrDestRegister = controlUnit.getRegDst() == 0 ? targetRegister : destinationRegister;
-    }
-
-    private boolean is32Bits(int[] var) {
-        return var.length == 32 ? true : false;
     }
 
     public void setRegisters(int[] sourceRegister, int[] targetRegister, int[] destinationRegister) {

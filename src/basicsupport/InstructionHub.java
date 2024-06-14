@@ -16,11 +16,15 @@ public class InstructionHub {
     }
 
     public void setInstruction(int[] instr) {
+
+        String className = this.getClass().getSimpleName();
+        HelpMethods.is32Bits(instr, className);
+        
         HelpMethods.reverseArray(instr);
         this.instr = instr;
     }
 
-    public void sendInstructions() {
+    public void sendInstructionsFromInstructionHub() {
         toControlUnit();
         toRegisterFile();
         toSignExtend();
@@ -43,7 +47,7 @@ public class InstructionHub {
 
     private void toSignExtend() {
         int[] imm = Arrays.copyOfRange(instr, 16, 32);
-        
+
         signExtend.setImmidiate(instr);
     }
 }

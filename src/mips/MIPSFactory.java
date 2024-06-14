@@ -18,13 +18,13 @@ public class MIPSFactory {
         HelpMethods.decToBin(0), 
         0
     );
-    private ProgramCounter programCounter = new ProgramCounter(adderPCPlus4);
     private ControlUnit    controlUnit    = new ControlUnit();
     private State          State          = new State(controlUnit);
     private RegisterFile   registerFile   = new RegisterFile(controlUnit);
     private SignExtend     signExtend     = new SignExtend();
     private InstructionHub instructionHub = new InstructionHub(State, registerFile, signExtend);
-    private ProgramMemory  programMemory  = new ProgramMemory(instructionHub, "src/mips/machinecode.txt");
+    private ProgramMemory  programMemory  = new ProgramMemory(instructionHub);
+    private ProgramCounter programCounter = new ProgramCounter(adderPCPlus4, programMemory);
     
     private MIPS           mips           = new MIPS(
         programMemory, 

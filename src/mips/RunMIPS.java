@@ -24,7 +24,6 @@ public class RunMIPS {
             programCounter.updateProgramCounter();
 
             if (programCounter.risingEdge()) {
-                programMemory.fetchInstruction();
                 registerFile.onRisingEdge();
             }
         }

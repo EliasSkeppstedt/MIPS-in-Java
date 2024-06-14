@@ -35,6 +35,17 @@ public class HelpMethods {
 
         return reversedArray;
     }
+
+    static public void is32Bits(int[] var, String className) {
+        boolean length = var.length == 32 ? true : false;
+        System.out.print("File: " + className + ".\n      Checked array ");
+        if (length) {
+            System.out.println("IS 32 bits.");
+        } else {
+            System.out.println("IS NOT 32 bits.");
+            System.exit(0);
+        }
+    }
     
     private enum hex {
         A(10), B(11), C(12), D(13), E(14), F(15);
