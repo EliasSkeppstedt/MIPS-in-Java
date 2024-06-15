@@ -1,17 +1,14 @@
 package basicsupport;
 
 import adder.Adder;
+import adder.FullAdder;
 
 public class ALU {
-    private Adder adderALU;
+    private Adder adderALU = new Adder(new FullAdder());
     private int[] ALUControl = new int[3];
     private int[] srcA = new int[32], srcB = new int[32], result = new int[32];
     private int[] adderResult = new int[32];
     private int sub, zeroFlag;
-
-    public ALU(Adder adderALU) {
-        this.adderALU = adderALU;
-    }
 
     public void runALU() {
         int ALUControlDec = 2^ALUControl[1] + 2^ALUControl[0];
@@ -38,6 +35,14 @@ public class ALU {
 
     public int[] getResult() {
         return result;
+    }
+
+    public void setSrcA(int[] srcA) {
+        this.srcA = srcA;
+    }
+
+    public void setSrcB(int[] srcB) {
+        this.srcB = srcB;
     }
 
     private void runAnd() {

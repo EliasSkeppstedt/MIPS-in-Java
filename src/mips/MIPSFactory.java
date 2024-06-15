@@ -1,6 +1,7 @@
 package mips;
 
 import adder.FullAdder;
+import basicsupport.ALU;
 import basicsupport.AdderPCPlus4;
 import basicsupport.HelpMethods;
 import basicsupport.ControlUnit;
@@ -9,6 +10,7 @@ import basicsupport.ProgramMemory;
 import basicsupport.RegisterFile;
 import basicsupport.SignExtend;
 import basicsupport.State;
+import mux.MUX32;
 import basicsupport.ProgramCounter;
 
 public class MIPSFactory {
@@ -25,7 +27,8 @@ public class MIPSFactory {
     private InstructionHub instructionHub = new InstructionHub(State, registerFile, signExtend);
     private ProgramMemory  programMemory  = new ProgramMemory(instructionHub);
     private ProgramCounter programCounter = new ProgramCounter(adderPCPlus4, programMemory);
-    
+    private ALU            ALU            = new ALU();
+    private MUX32          mux32          = new MUX32(registerFile, signExtend, ALU, controlUnit);
     private MIPS           mips           = new MIPS(
         programMemory, 
         controlUnit, 
